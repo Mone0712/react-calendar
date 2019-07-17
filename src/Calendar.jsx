@@ -431,6 +431,7 @@ export default class Calendar extends Component {
         const {
           formatShortWeekday,
           onClickDay,
+          onClickweekDay,
           onClickWeekNumber,
           showFixedNumberOfWeeks,
           showNeighboringMonth,
@@ -443,6 +444,7 @@ export default class Calendar extends Component {
             calendarType={calendarType}
             formatShortWeekday={formatShortWeekday}
             onClick={mergeFunctions(clickAction, onClickDay)}
+            onClickweekDay={onClickweekDay}
             onClickWeekNumber={onClickWeekNumber}
             onMouseLeave={onMouseLeave}
             showFixedNumberOfWeeks={showFixedNumberOfWeeks}
@@ -568,6 +570,7 @@ Calendar.propTypes = {
   onClickDay: PropTypes.func,
   onClickDecade: PropTypes.func,
   onClickMonth: PropTypes.func,
+  onClickweekDay: PropTypes.func,
   onClickWeekNumber: PropTypes.func,
   onClickYear: PropTypes.func,
   onDrillDown: PropTypes.func,

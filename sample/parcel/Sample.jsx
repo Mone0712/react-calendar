@@ -24,6 +24,7 @@ export default class Sample extends Component {
               onChange={this.onChange}
               showWeekNumbers
               value={value}
+              onClickWeekday={() => {alert('kjglks')}}
             />
           </main>
         </div>

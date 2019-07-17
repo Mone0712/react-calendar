@@ -22,6 +22,7 @@ export default function MonthView(props) {
   const {
     calendarType: calendarTypeProps,
     formatShortWeekday,
+    onClickWeekDay,
     onClickWeekNumber,
     showWeekNumbers,
     ...childProps
@@ -88,6 +89,7 @@ export default function MonthView(props) {
         calendarType={calendarType}
         locale={locale}
         onMouseLeave={onMouseLeave}
+        onClickWeekDay={onClickWeekDay}
         formatShortWeekday={formatShortWeekday}
       />
     );

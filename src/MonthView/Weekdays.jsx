@@ -18,6 +18,7 @@ export default function Weekdays(props) {
     formatShortWeekday,
     locale,
     onMouseLeave,
+    onClickWeekDay,
   } = props;
 
   const anyDate = new Date();
@@ -38,6 +39,7 @@ export default function Weekdays(props) {
       <div
         className="react-calendar__month-view__weekdays__weekday"
         key={weekday}
+        onClick={onClickWeekDay}
       >
         <abbr title={abbr} aria-label={abbr}>
           {formatShortWeekday(locale, weekdayDate).replace('.', '')}
@@ -67,4 +69,5 @@ Weekdays.propTypes = {
   formatShortWeekday: PropTypes.func,
   locale: PropTypes.string,
   onMouseLeave: PropTypes.func,
+  onClickWeekDay: PropTypes.func,
 };
