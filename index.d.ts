@@ -31,6 +31,7 @@ declare module "react-calendar" {
     onClickDay?: DateCallback;
     onClickDecade?: DateCallback;
     onClickMonth?: DateCallback;
+    onClickWeekDay?: DateCallback;
     onClickWeekNumber?: ClickWeekNumberCallback;
     onClickYear?: DateCallback;
     onDrillDown?: ViewCallback;
