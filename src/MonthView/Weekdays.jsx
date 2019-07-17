@@ -19,6 +19,7 @@ export default function Weekdays(props) {
     locale,
     onMouseLeave,
     onClickWeekDay,
+    beginDate
   } = props;
 
   const anyDate = new Date();
@@ -27,6 +28,9 @@ export default function Weekdays(props) {
   const monthIndex = getMonthIndex(beginOfMonth);
 
   const weekdays = [];
+  let beginDate=Array(8).fill(0);
+  beginDate.map((item,index) => index<beginOfMonth.getDay() ? item=beginOfMonth.setDate(beginOfMonth.getDate()+7+index-beginOfMonth.getDay()):item=beginOfMonth.setDate(beginOfMonth.getDate()+index-beginOfMonth.getDay()));
+  beginDate[7]=beginDate[0];
 
   for (let weekday = 1; weekday <= 7; weekday += 1) {
     const weekdayDate = new Date(
@@ -39,7 +43,7 @@ export default function Weekdays(props) {
       <div
         className="react-calendar__month-view__weekdays__weekday"
         key={weekday}
-        onClick={onClickWeekDay}
+        onClick={() => onClickWeekDay(beginDate[weekday])}
       >
         <abbr title={abbr} aria-label={abbr}>
           {formatShortWeekday(locale, weekdayDate).replace('.', '')}
