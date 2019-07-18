@@ -362,6 +362,14 @@ export default class Calendar extends Component {
     this.setState({ hover: null });
   }
 
+  // onClickWeekDay = () => {
+  //   alert('bbbbbbbb');
+  // }
+
+  // onClickWeekNumber = () => {
+  //   alert('aaaaaaa');
+  // }
+
   renderContent() {
     const {
       calendarType,
@@ -431,7 +439,7 @@ export default class Calendar extends Component {
         const {
           formatShortWeekday,
           onClickDay,
-          onClickweekDay,
+          onClickWeekDay,
           onClickWeekNumber,
           showFixedNumberOfWeeks,
           showNeighboringMonth,
@@ -444,7 +452,7 @@ export default class Calendar extends Component {
             calendarType={calendarType}
             formatShortWeekday={formatShortWeekday}
             onClick={mergeFunctions(clickAction, onClickDay)}
-            onClickweekDay={onClickweekDay}
+            onClickWeekDay={onClickWeekDay}
             onClickWeekNumber={onClickWeekNumber}
             onMouseLeave={onMouseLeave}
             showFixedNumberOfWeeks={showFixedNumberOfWeeks}
@@ -570,7 +578,7 @@ Calendar.propTypes = {
   onClickDay: PropTypes.func,
   onClickDecade: PropTypes.func,
   onClickMonth: PropTypes.func,
-  onClickweekDay: PropTypes.func,
+  onClickWeekDay: PropTypes.func,
   onClickWeekNumber: PropTypes.func,
   onClickYear: PropTypes.func,
   onDrillDown: PropTypes.func,

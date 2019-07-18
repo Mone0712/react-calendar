@@ -83,6 +83,7 @@ export default function MonthView(props) {
     }
   })();
 
+
   function renderWeekdays() {
     return (
       <Weekdays
@@ -158,6 +159,7 @@ MonthView.propTypes = {
   maxDate: isMaxDate,
   minDate: isMinDate,
   onChange: PropTypes.func,
+  onClickWeekDay: PropTypes.func,
   onClickWeekNumber: PropTypes.func,
   onMouseLeave: PropTypes.func,
   setActiveRange: PropTypes.func,

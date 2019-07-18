@@ -1,3 +1,6 @@
+/* eslint-disable prefer-destructuring */
+/* eslint-disable no-unused-expressions */
+/* eslint-disable no-plusplus */
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -19,7 +22,6 @@ export default function Weekdays(props) {
     locale,
     onMouseLeave,
     onClickWeekDay,
-    beginDate
   } = props;
 
   const anyDate = new Date();
@@ -28,10 +30,14 @@ export default function Weekdays(props) {
   const monthIndex = getMonthIndex(beginOfMonth);
 
   const weekdays = [];
-  let beginDate=Array(8).fill(0);
-  beginDate.map((item,index) => index<beginOfMonth.getDay() ? item=beginOfMonth.setDate(beginOfMonth.getDate()+7+index-beginOfMonth.getDay()):item=beginOfMonth.setDate(beginOfMonth.getDate()+index-beginOfMonth.getDay()));
-  beginDate[7]=beginDate[0];
-
+  const beginDate = Array(8).fill(1);
+  const a = getBeginOfMonth(anyDate);
+  for (let index = 0; index < 7; index++) {
+    index < beginOfMonth.getDay()
+      ? beginDate[index] = a.setDate(beginOfMonth.getDate() + 7 + index - beginOfMonth.getDay())
+      : beginDate[index] = a.setDate(beginOfMonth.getDate() + index - beginOfMonth.getDay());
+  }
+  beginDate[7] = beginDate[0];
   for (let weekday = 1; weekday <= 7; weekday += 1) {
     const weekdayDate = new Date(
       year, monthIndex, weekday - getDayOfWeek(beginOfMonth, calendarType),
@@ -40,15 +46,18 @@ export default function Weekdays(props) {
     const abbr = formatWeekday(locale, weekdayDate);
 
     weekdays.push(
-      <div
+      <button
         className="react-calendar__month-view__weekdays__weekday"
         key={weekday}
-        onClick={() => onClickWeekDay(beginDate[weekday])}
+        type="button"
+        onClick={
+            () => onClickWeekDay(beginDate[weekday])
+        }
       >
         <abbr title={abbr} aria-label={abbr}>
           {formatShortWeekday(locale, weekdayDate).replace('.', '')}
         </abbr>
-      </div>,
+      </button>,
     );
   }
 
@@ -72,6 +81,6 @@ Weekdays.propTypes = {
   calendarType: isCalendarType.isRequired,
   formatShortWeekday: PropTypes.func,
   locale: PropTypes.string,
-  onMouseLeave: PropTypes.func,
   onClickWeekDay: PropTypes.func,
+  onMouseLeave: PropTypes.func,
 };
