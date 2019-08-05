@@ -20,10 +20,11 @@ export default function Weekdays(props) {
     calendarType,
     formatShortWeekday,
     locale,
+    // activeStartDate,
+    startDate,
     onMouseLeave,
     onClickWeekDay,
   } = props;
-
   const anyDate = new Date();
   const beginOfMonth = getBeginOfMonth(anyDate);
   const year = getYear(beginOfMonth);
@@ -31,13 +32,23 @@ export default function Weekdays(props) {
 
   const weekdays = [];
   const beginDate = Array(8).fill(1);
-  const a = getBeginOfMonth(anyDate);
-  for (let index = 0; index < 7; index++) {
-    index < beginOfMonth.getDay()
-      ? beginDate[index] = a.setDate(beginOfMonth.getDate() + 7 + index - beginOfMonth.getDay())
-      : beginDate[index] = a.setDate(beginOfMonth.getDate() + index - beginOfMonth.getDay());
+  // const a = getBeginOfMonth(anyDate);
+  // for (let index = 0; index < 7; index++) {
+  //   index < beginOfMonth.getDay()
+  //     ? beginDate[index] = a.setDate(beginOfMonth.getDate() + 7 + index - beginOfMonth.getDay())
+  //     : beginDate[index] = a.setDate(beginOfMonth.getDate() + index - beginOfMonth.getDay());
+  // }
+  // beginDate[7] = beginDate[0];
+  // for (let weekday = 1; weekday <= 7; weekday += 1) {
+  //   const weekdayDate = new Date(
+  //     year, monthIndex, weekday - getDayOfWeek(beginOfMonth, calendarType),
+  //   );
+  const a = new Date(startDate.getTime());
+  for (let index = 0; index <= 7; index++) {
+    beginDate[index] = new Date(
+      a.setDate(startDate.getDate() + index - startDate.getDay()),
+    );
   }
-  beginDate[7] = beginDate[0];
   for (let weekday = 1; weekday <= 7; weekday += 1) {
     const weekdayDate = new Date(
       year, monthIndex, weekday - getDayOfWeek(beginOfMonth, calendarType),
@@ -78,9 +89,11 @@ Weekdays.defaultProps = {
 };
 
 Weekdays.propTypes = {
+  // activeStartDate: PropTypes.instanceOf(Date).isRequired,
   calendarType: isCalendarType.isRequired,
   formatShortWeekday: PropTypes.func,
   locale: PropTypes.string,
   onClickWeekDay: PropTypes.func,
   onMouseLeave: PropTypes.func,
+  startDate: PropTypes.instanceOf(Date).isRequired,
 };

@@ -444,6 +444,8 @@ export default class Calendar extends Component {
           showFixedNumberOfWeeks,
           showNeighboringMonth,
           showWeekNumbers,
+          startDate,
+          allSelects,
         } = this.props;
         const { onMouseLeave } = this;
 
@@ -458,6 +460,8 @@ export default class Calendar extends Component {
             showFixedNumberOfWeeks={showFixedNumberOfWeeks}
             showNeighboringMonth={showNeighboringMonth}
             showWeekNumbers={showWeekNumbers}
+            startDate={startDate}
+            allSelects={allSelects}
             {...commonProps}
           />
         );
@@ -557,6 +561,7 @@ Calendar.defaultProps = {
 
 Calendar.propTypes = {
   activeStartDate: PropTypes.instanceOf(Date),
+  allSelects: PropTypes.arrayOf(Date),
   calendarType: isCalendarType,
   className: isClassName,
   formatMonth: PropTypes.func,
@@ -594,6 +599,7 @@ Calendar.propTypes = {
   showNavigation: PropTypes.bool,
   showNeighboringMonth: PropTypes.bool,
   showWeekNumbers: PropTypes.bool,
+  startDate: PropTypes.instanceOf(Date),
   tileClassName: PropTypes.oneOfType([
     PropTypes.func,
     isClassName,

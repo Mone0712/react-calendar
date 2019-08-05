@@ -22,6 +22,7 @@ export default function WeekNumbers(props) {
     onClickWeekNumber,
     onMouseLeave,
     showFixedNumberOfWeeks,
+    allSelects,
   } = props;
 
   const numberOfWeeks = (() => {
@@ -51,7 +52,6 @@ export default function WeekNumbers(props) {
   })();
 
   const weekNumbers = dates.map(date => getWeekNumber(date, calendarType));
-
   return (
     <Flex
       className="react-calendar__month-view__weekNumbers"
@@ -68,6 +68,7 @@ export default function WeekNumbers(props) {
             key={weekNumber}
             onClickWeekNumber={onClickWeekNumber}
             weekNumber={weekNumber}
+            allSelects={allSelects}
           />
         ))
       }
@@ -77,6 +78,7 @@ export default function WeekNumbers(props) {
 
 WeekNumbers.propTypes = {
   activeStartDate: PropTypes.instanceOf(Date).isRequired,
+  allSelects: PropTypes.arrayOf(Date),
   calendarType: isCalendarType.isRequired,
   onClickWeekNumber: PropTypes.func,
   onMouseLeave: PropTypes.func,
